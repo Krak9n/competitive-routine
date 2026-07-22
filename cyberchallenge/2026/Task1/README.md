@@ -19,4 +19,4 @@ Substack 2: 1 <= T <= 10^3, 1 <= N <= 10^3
 ---
 # SOLUTION
 
-Create sub vector for each team. 
+Just don't use files like they do on CodeForces. What a chads.
