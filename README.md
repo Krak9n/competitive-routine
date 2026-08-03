@@ -4,3 +4,4 @@ This repository is created just to keep up my solves for different olympiads, an
 - **CSES**
 - **CyberChallenge**
 - **LeetCode**
+- **OliCyber**
