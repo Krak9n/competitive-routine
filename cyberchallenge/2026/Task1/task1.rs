@@ -1,47 +1,64 @@
-use std::io::BufRead;
+use std::{fs, io, io::BufRead, path::Path};
 
+fn break_file(filename: &str) -> io::Result<io::Lines<io::BufReader<fs::File>>> {
+    let file = fs::File::open(filename)?;
+    // create a new buffered reader
+    Ok(io::BufReader::new(file).lines())
+}
+
+// break a map into a smaller ones
+// start iterating. take the first argument as the size and then
+// insert the second line as the iterable, and the third one into a HashMap<u32>
 fn main() {
-    let mut T: String = String::new();
-    std::io::stdin()
+    if let Ok(lines) = break_file("input/subtask1_input1.txt") {
+        for line in lines {
+            let t: String = line.unwrap();
+            let T = t.trim().parse::<u32>().expect("Failed to parse T");
+
+            while T != 0 {
+                
+            }
+        }
+    }
+}
+/*
+fn main() -> io::Result<io::Lines<io::BufReader<File>>> {
+    io::stdin()
         .read_line(&mut T)
-        .expect("failed to read the T");
-    let mut T: u8 = T.trim().parse().expect("failed to parse");
+        .expect("Failed to read T.");
+    let mut T: u8 = T.trim().parse().expect("Failed to parse T.");
     let mut N: String = String::new();
     let mut result: usize = 0;
-    while T != 0 { 
-        std::io::stdin()
+
+    while T != 0 {
+        io::stdin()
             .read_line(&mut N)
-            .expect("failed to read the N");
-        let N: u8 = N.trim().parse().expect("failed to parse");
-        let mut scores: Vec<usizE> = read_vec::<usize>();
+            .expect("Failed to read N.");
+        let N: u8 = N.trim().parse().expect("Failed to parse N.");
+        let mut scores: Vec<usize> = read_vec::<usize>();
         if N <= 10 {
             result = scores.iter().sum();
         }
         else if N > 10 {
-            result = find_ten_biggest_elements(scores).iter().sum();
+            result = find_ten_biggest_elements(&mut scores).iter().sum();
         }
         T -= 1;
     }
     println!("{}", result);
 }
-
-// find the biggest one
-// push it into a new vec
-// remove from the original
-// repeat ten times
-fn find_ten_biggest_elements(mut inputs: Vec<usize>) -> Vec<usize> {
+*/
+// Find the biggest one, push it into a new Vector.
+// Then remove it from the original. And repeat ten times.
+fn find_ten_biggest_elements(inputs: &mut Vec<usize>) -> Vec<usize> {
     let mut mx: Vec<usize> = Vec::new();
-    for i in 0..10 { 
-        let max = inputs
-            .iter()
-            .enumerate()
-            .max_by_key(|(_, &val) | val);
+    for i in 0..10 {
+        let max = inputs.iter().enumerate().max_by_key(|(_, &val)| val);
         match max {
             Some((i, v)) => {
                 mx.push(*v);
                 inputs.remove(i);
-            },
-            None => println!("failed"),
+            }
+            None => println!("Failed to find the biggest element"),
         }
     }
     mx
@@ -52,7 +69,7 @@ where
     T: std::str::FromStr,
     <T as std::str::FromStr>::Err: std::fmt::Debug,
 {
-    std::io::stdin()
+    io::stdin()
         .lock()
         .lines()
         .next()
@@ -62,15 +79,4 @@ where
         .split_whitespace()
         .map(|s| s.parse::<T>().unwrap())
         .collect::<Vec<T>>()
-}
-
-// i have no idea how to implement the reading from file
-// from now only from stdin
-fn read_lines(filename: &str) -> Vec<String> {
-    let t: Vec<String> = std::fs::read_to_string(filename)
-        .unwrap()
-        .lines() // splits the string into an interator of string slices
-        .map(String::from)
-        .collect(); // gathers into a vector
-    t
 }
