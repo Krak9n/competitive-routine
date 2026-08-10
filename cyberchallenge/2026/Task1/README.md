@@ -1,10 +1,8 @@
-First problem on the 2026 set.
+First problem on the 2026 set.  
+  
+Given 2T+1 lines, where T is the number of teams.    
 
-Everything should be read from a file though.
-
-I am given 2T+1 lines, where T is the number of teams.  
-
-**/input** contains the input parameters on which I have to test the code and output results into **/output**.  
+**/input** contains the input parameters on which I have to test the code and output results into **/output**.    
   
 ### INPUT
 Line 1: the T, number of teams
