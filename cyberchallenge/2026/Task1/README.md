@@ -15,3 +15,7 @@ If the team played less or equal than 10 CTFs - just sum up everything.
 
 Substack 1: T = 1, N = 10
 Substack 2: 1 <= T <= 10^3, 1 <= N <= 10^3
+
+---
+### EXPLANATION  
+*wip*  
